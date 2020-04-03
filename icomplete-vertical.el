@@ -33,6 +33,11 @@
   :type 'integer
   :group 'icomplete)
 
+(defcustom icomplete-vertical-separator "\n"
+  "String separating candidates in `icomplete-vertical-mode'."
+  :type 'string
+  :group 'icomplete)
+
 (defvar icomplete-vertical-old-separator nil
   "Store last known value of `icomplete-separator'.
 Records the value when `icomplete-vertical-mode' is turned on.
@@ -68,7 +73,7 @@ Meant to be added to `icomplete-minibuffer-setup-hook'."
   (if icomplete-vertical-mode
       (progn
         (setq icomplete-vertical-old-separator icomplete-separator
-              icomplete-separator "\n"
+              icomplete-separator icomplete-vertical-separator
               icomplete-vertical-old-hide-common icomplete-hide-common-prefix
               icomplete-hide-common-prefix nil)
         (advice-add 'icomplete-completions
